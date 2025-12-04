@@ -1,0 +1,1084 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #e8f0f7;
+  color: #2c3e50;
+  line-height: 1.8;
+  min-height: 100vh;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Music Control Button */
+.music-control {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6b8db8 0%, #98b8d8 100%);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(107, 141, 184, 0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.music-control:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(107, 141, 184, 0.6);
+}
+
+.music-control:active {
+  transform: scale(0.95);
+}
+
+.music-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.music-control.playing .play-icon {
+  opacity: 0;
+}
+
+.music-control.playing .pause-icon {
+  opacity: 1;
+}
+
+.music-control:not(.playing) .play-icon {
+  opacity: 1;
+}
+
+.music-control:not(.playing) .pause-icon {
+  opacity: 0;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 5px 20px rgba(107, 141, 184, 0.4);
+  }
+  50% {
+    box-shadow: 0 5px 30px rgba(107, 141, 184, 0.7);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(107, 141, 184, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(107, 141, 184, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  margin: 0 15px;
+}
+
+.nav-link {
+  display: block;
+  padding: 15px 20px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.nav-link.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.nav-link.active::before {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, white, transparent);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-link:hover::after {
+  width: 70%;
+}
+
+.nav-link.active::after {
+  width: 80%;
+  background: linear-gradient(90deg, transparent, white, transparent);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 5px white;
+}
+
+/* Home Section */
+.home-section {
+  background: linear-gradient(to bottom, #d4e6f5 0%, #e8f0f7 50%, #d4e6f5 100%);
+  padding: 80px 20px 60px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.floral-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"><defs><linearGradient id="grad1" x1="0%25" y1="0%25" x2="100%25" y2="0%25"><stop offset="0%25" style="stop-color:%236B8DB8;stop-opacity:0.3" /><stop offset="50%25" style="stop-color:%2398B8D8;stop-opacity:0.2" /><stop offset="100%25" style="stop-color:%236B8DB8;stop-opacity:0.3" /></linearGradient></defs><path fill="url(%23grad1)" d="M0,80 Q100,40 200,80 T400,80 T600,80 T800,80 L800,0 L0,0 Z"/><circle cx="150" cy="60" r="20" fill="%236B8DB8" opacity="0.15"/><circle cx="170" cy="45" r="12" fill="%2398B8D8" opacity="0.2"/><circle cx="650" cy="60" r="20" fill="%236B8DB8" opacity="0.15"/><circle cx="630" cy="45" r="12" fill="%2398B8D8" opacity="0.2"/></svg>');
+  background-size: cover;
+  background-position: bottom;
+  z-index: 0;
+}
+
+.floral-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"><defs><linearGradient id="grad2" x1="0%25" y1="0%25" x2="100%25" y2="0%25"><stop offset="0%25" style="stop-color:%236B8DB8;stop-opacity:0.3" /><stop offset="50%25" style="stop-color:%2398B8D8;stop-opacity:0.2" /><stop offset="100%25" style="stop-color:%236B8DB8;stop-opacity:0.3" /></linearGradient></defs><path fill="url(%23grad2)" d="M0,120 Q100,160 200,120 T400,120 T600,120 T800,120 L800,200 L0,200 Z"/><circle cx="150" cy="140" r="20" fill="%236B8DB8" opacity="0.15"/><circle cx="170" cy="155" r="12" fill="%2398B8D8" opacity="0.2"/><circle cx="650" cy="140" r="20" fill="%236B8DB8" opacity="0.15"/><circle cx="630" cy="155" r="12" fill="%2398B8D8" opacity="0.2"/></svg>');
+  background-size: cover;
+  background-position: top;
+  z-index: 0;
+}
+
+/* Flower Decorations */
+.flower-decoration {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  animation: floatFlower 6s ease-in-out infinite;
+}
+
+.flower-top-left {
+  top: 120px;
+  left: 15px;
+  width: 160px;
+  height: 160px;
+  background-image: url("img/5.svg");
+  opacity: 0.45;
+  animation-delay: 0s;
+}
+
+.flower-top-right {
+  top: 100px;
+  right: 10px;
+  width: 170px;
+  height: 170px;
+  background-image: url("img/6.svg");
+  opacity: 0.45;
+  animation-delay: 0.8s;
+}
+
+.flower-middle-left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 140px;
+  height: 140px;
+  background-image: url("img/6.svg");
+  opacity: 0.4;
+  animation-delay: 1.6s;
+}
+
+.flower-middle-right {
+  top: 45%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 150px;
+  background-image: url("img/5.svg");
+  opacity: 0.4;
+  animation-delay: 2.4s;
+}
+
+.flower-bottom-left {
+  bottom: 120px;
+  left: 20px;
+  width: 180px;
+  height: 180px;
+  background-image: url("img/5.svg");
+  opacity: 0.5;
+  animation-delay: 3.2s;
+}
+
+.flower-bottom-right {
+  bottom: 150px;
+  right: 20px;
+  width: 180px;
+  height: 180px;
+  background-image: url("img/6.svg");
+  opacity: 0.5;
+  animation-delay: 4s;
+}
+
+@keyframes floatFlower {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.arabic-text {
+  font-family: "Amiri", serif;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 700;
+  direction: rtl;
+}
+
+.greeting {
+  font-size: 1rem;
+  color: #2c3e50;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.message-box {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+  border: 1px solid rgba(107, 141, 184, 0.15);
+  box-shadow: 0 3px 15px rgba(107, 141, 184, 0.08);
+}
+
+.message-line {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+.deceased-info {
+  margin: 40px 0;
+  padding: 30px 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 5px 25px rgba(107, 141, 184, 0.12);
+  border: 2px solid rgba(107, 141, 184, 0.2);
+  transition: all 0.3s ease;
+}
+
+.deceased-info:hover {
+  box-shadow: 0 8px 35px rgba(107, 141, 184, 0.18);
+  transform: translateY(-2px);
+}
+
+.deceased-name {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.parent-names {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 5px 0;
+}
+
+.event-info {
+  margin: 40px 0;
+}
+
+.event-title {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.event-title-sub {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.event-details-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 15px;
+  margin: 20px 0;
+  box-shadow: 0 4px 20px rgba(107, 141, 184, 0.1);
+  border: 2px solid rgba(107, 141, 184, 0.15);
+  transition: all 0.3s ease;
+}
+
+.event-details-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(107, 141, 184, 0.15);
+  border-color: rgba(107, 141, 184, 0.25);
+}
+
+.event-detail {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin: 12px 0;
+  text-align: left;
+}
+
+.event-detail strong {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.invitation-text {
+  margin: 40px 0 20px;
+  padding: 25px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  border: 1px solid rgba(107, 141, 184, 0.12);
+  box-shadow: 0 3px 15px rgba(107, 141, 184, 0.06);
+}
+
+.invitation-text p {
+  font-size: 0.95rem;
+  color: #2c3e50;
+  margin: 5px 0;
+}
+
+/* Profile Section */
+.profile-section {
+  background: linear-gradient(to bottom, #f8fbff 0%, #e8f0f7 100%);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.floral-top-small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><circle cx="100" cy="30" r="15" fill="%236B8DB8" opacity="0.15"/><circle cx="150" cy="50" r="20" fill="%2398B8D8" opacity="0.2"/><circle cx="200" cy="35" r="12" fill="%236B8DB8" opacity="0.15"/><circle cx="650" cy="35" r="12" fill="%236B8DB8" opacity="0.15"/><circle cx="700" cy="50" r="20" fill="%2398B8D8" opacity="0.2"/><circle cx="750" cy="30" r="15" fill="%236B8DB8" opacity="0.15"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.floral-bottom-small {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 100"><circle cx="100" cy="70" r="15" fill="%236B8DB8" opacity="0.15"/><circle cx="150" cy="50" r="20" fill="%2398B8D8" opacity="0.2"/><circle cx="200" cy="65" r="12" fill="%236B8DB8" opacity="0.15"/><circle cx="650" cy="65" r="12" fill="%236B8DB8" opacity="0.15"/><circle cx="700" cy="50" r="20" fill="%2398B8D8" opacity="0.2"/><circle cx="750" cy="70" r="15" fill="%236B8DB8" opacity="0.15"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.arabic-bismillah {
+  font-family: "Amiri", serif;
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: 700;
+  direction: rtl;
+}
+
+.profile-photo {
+  width: 280px;
+  height: 380px;
+  margin: 30px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(107, 141, 184, 0.25);
+  border: 5px solid rgba(107, 141, 184, 0.3);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(107, 141, 184, 0.3);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-floral-corner {
+  position: absolute;
+  bottom: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 120px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120"><circle cx="40" cy="60" r="25" fill="%236B8DB8" opacity="0.15"/><circle cx="280" cy="60" r="25" fill="%236B8DB8" opacity="0.15"/><circle cx="80" cy="80" r="18" fill="%2398B8D8" opacity="0.2"/><circle cx="240" cy="80" r="18" fill="%2398B8D8" opacity="0.2"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* Corner Flowers for Profile Section */
+.corner-flower {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.corner-flower-tl {
+  top: 30px;
+  left: 10px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><g transform="rotate(-15 75 75)"><circle cx="75" cy="75" r="30" fill="%236B8DB8" opacity="0.25"/><circle cx="50" cy="60" r="20" fill="%2398B8D8" opacity="0.3"/><circle cx="100" cy="60" r="20" fill="%2398B8D8" opacity="0.3"/><circle cx="60" cy="95" r="18" fill="%2398B8D8" opacity="0.3"/><circle cx="90" cy="95" r="18" fill="%2398B8D8" opacity="0.3"/><circle cx="75" cy="50" r="15" fill="%23B8D4E8" opacity="0.35"/><path d="M60,110 Q75,125 90,110" stroke="%236B8DB8" stroke-width="2" fill="none" opacity="0.3"/><path d="M40,70 L45,75 L40,80" stroke="%236B8DB8" stroke-width="1.5" fill="none" opacity="0.25"/><path d="M110,70 L105,75 L110,80" stroke="%236B8DB8" stroke-width="1.5" fill="none" opacity="0.25"/></g></svg>');
+  animation: rotateFlower 20s linear infinite;
+}
+
+.corner-flower-tr {
+  top: 50px;
+  right: 10px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><g transform="rotate(15 75 75)"><circle cx="75" cy="75" r="28" fill="%2398B8D8" opacity="0.3"/><circle cx="55" cy="65" r="18" fill="%236B8DB8" opacity="0.25"/><circle cx="95" cy="65" r="18" fill="%236B8DB8" opacity="0.25"/><circle cx="65" cy="92" r="16" fill="%236B8DB8" opacity="0.25"/><circle cx="85" cy="92" r="16" fill="%236B8DB8" opacity="0.25"/><circle cx="75" cy="55" r="13" fill="%23B8D4E8" opacity="0.35"/><path d="M65,105 Q75,118 85,105" stroke="%236B8DB8" stroke-width="2" fill="none" opacity="0.3"/></g></svg>');
+  animation: rotateFlower 22s linear infinite reverse;
+}
+
+.corner-flower-bl {
+  bottom: 30px;
+  left: 15px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><g transform="rotate(25 75 75)"><circle cx="75" cy="75" r="26" fill="%236B8DB8" opacity="0.25"/><circle cx="56" cy="66" r="17" fill="%2398B8D8" opacity="0.3"/><circle cx="94" cy="66" r="17" fill="%2398B8D8" opacity="0.3"/><circle cx="66" cy="90" r="15" fill="%2398B8D8" opacity="0.3"/><circle cx="84" cy="90" r="15" fill="%2398B8D8" opacity="0.3"/><circle cx="75" cy="56" r="12" fill="%23B8D4E8" opacity="0.35"/></g></svg>');
+  animation: rotateFlower 24s linear infinite;
+}
+
+.corner-flower-br {
+  bottom: 50px;
+  right: 15px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><g transform="rotate(-20 75 75)"><circle cx="75" cy="75" r="29" fill="%2398B8D8" opacity="0.3"/><circle cx="54" cy="64" r="19" fill="%236B8DB8" opacity="0.25"/><circle cx="96" cy="64" r="19" fill="%236B8DB8" opacity="0.25"/><circle cx="64" cy="91" r="17" fill="%236B8DB8" opacity="0.25"/><circle cx="86" cy="91" r="17" fill="%236B8DB8" opacity="0.25"/><circle cx="75" cy="53" r="14" fill="%23B8D4E8" opacity="0.35"/><path d="M64,108 Q75,122 86,108" stroke="%236B8DB8" stroke-width="2" fill="none" opacity="0.3"/></g></svg>');
+  animation: rotateFlower 26s linear infinite reverse;
+}
+
+@keyframes rotateFlower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.profile-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin: 30px 0 20px;
+  letter-spacing: 1px;
+}
+
+.life-dates {
+  margin: 25px 0;
+}
+
+.life-date {
+  font-size: 1.05rem;
+  color: #2c3e50;
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+/* Location Section */
+.location-section {
+  background: linear-gradient(to bottom, #d4e6f5 0%, #e8f0f7 50%, #d4e6f5 100%);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 60px;
+}
+
+.floral-decoration {
+  height: 80px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 80"><circle cx="400" cy="40" r="8" fill="%236B8DB8" opacity="0.2"/><circle cx="380" cy="50" r="12" fill="%2398B8D8" opacity="0.15"/><circle cx="420" cy="50" r="12" fill="%2398B8D8" opacity="0.15"/><circle cx="360" cy="35" r="6" fill="%236B8DB8" opacity="0.15"/><circle cx="440" cy="35" r="6" fill="%236B8DB8" opacity="0.15"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 20px 0;
+}
+
+.location-title {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* Location Section Flowers */
+.location-flower-left {
+  top: 80px;
+  left: 15px;
+  width: 150px;
+  height: 150px;
+  background-image: url("img/6.svg");
+  opacity: 0.45;
+  animation-delay: 0.5s;
+}
+
+.location-flower-right {
+  top: 100px;
+  right: 10px;
+  width: 160px;
+  height: 160px;
+  background-image: url("img/5.svg");
+  opacity: 0.45;
+  animation-delay: 1.2s;
+}
+
+.location-flower-bottom-left {
+  bottom: 100px;
+  left: 20px;
+  width: 140px;
+  height: 140px;
+  background-image: url("img/5.svg");
+  opacity: 0.4;
+  animation-delay: 1.9s;
+}
+
+.location-flower-bottom-right {
+  bottom: 120px;
+  right: 15px;
+  width: 145px;
+  height: 145px;
+  background-image: url("img/6.svg");
+  opacity: 0.4;
+  animation-delay: 2.6s;
+}
+
+/* Map Container */
+.map-container {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(107, 141, 184, 0.15);
+  border: 2px solid rgba(107, 141, 184, 0.2);
+  max-width: 650px;
+  margin: 0 auto 40px;
+  transition: all 0.3s ease;
+}
+
+.map-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(107, 141, 184, 0.2);
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 350px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(107, 141, 184, 0.15);
+  border: 3px solid rgba(107, 141, 184, 0.2);
+  margin-bottom: 20px;
+}
+
+.map-wrapper iframe {
+  display: block;
+  border-radius: 12px;
+}
+
+.map-info {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(107, 141, 184, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(107, 141, 184, 0.1);
+}
+
+.location-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.location-address {
+  font-size: 0.95rem;
+  color: #6b8db8;
+  font-weight: 500;
+}
+
+.location-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #6b8db8 0%, #98b8d8 100%);
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 5px 20px rgba(107, 141, 184, 0.3);
+  margin-top: 10px;
+}
+
+.location-link:hover {
+  background: linear-gradient(135deg, #5a7ca7 0%, #87a7c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(107, 141, 184, 0.4);
+}
+
+.location-link:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 15px rgba(107, 141, 184, 0.3);
+}
+
+.location-link svg {
+  flex-shrink: 0;
+}
+
+.closing-message {
+  margin: 40px 0 20px;
+  padding: 30px 25px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  border: 1px solid rgba(107, 141, 184, 0.15);
+  box-shadow: 0 4px 20px rgba(107, 141, 184, 0.08);
+}
+
+.closing-message p {
+  font-size: 0.95rem;
+  color: #2c3e50;
+  margin: 8px 0;
+}
+
+.wassalam {
+  font-style: italic;
+  margin-top: 20px !important;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-container {
+    padding: 0 15px;
+  }
+
+  .nav-menu {
+    justify-content: center;
+  }
+
+  .nav-menu li {
+    margin: 0 8px;
+  }
+
+  .nav-link {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
+  .arabic-text {
+    font-size: 1.6rem;
+  }
+
+  .home-section {
+    padding: 70px 15px 50px;
+  }
+
+  .deceased-info {
+    padding: 25px 15px;
+  }
+
+  .deceased-name {
+    font-size: 1.15rem;
+  }
+
+  .event-details-box {
+    padding: 20px 15px;
+  }
+
+  .profile-photo {
+    width: 240px;
+    height: 320px;
+  }
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  .life-date {
+    font-size: 0.95rem;
+  }
+
+  .location-title {
+    font-size: 1.5rem;
+  }
+
+  .map-container {
+    padding: 20px;
+  }
+
+  .map-wrapper {
+    height: 300px;
+  }
+
+  .location-name {
+    font-size: 1rem;
+  }
+
+  .location-address {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background: white;
+  }
+
+  .container {
+    box-shadow: none;
+  }
+
+  .music-control {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .music-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .flower-decoration {
+    width: 100px;
+    height: 100px;
+  }
+
+  .flower-top-left,
+  .flower-top-right {
+    width: 110px;
+    height: 110px;
+  }
+
+  .flower-middle-left,
+  .flower-middle-right {
+    width: 90px;
+    height: 90px;
+  }
+
+  .flower-bottom-left,
+  .flower-bottom-right {
+    width: 120px;
+    height: 120px;
+  }
+
+  .location-flower-left,
+  .location-flower-right {
+    width: 100px;
+    height: 100px;
+  }
+
+  .location-flower-bottom-left,
+  .location-flower-bottom-right {
+    width: 90px;
+    height: 90px;
+  }
+
+  .corner-flower {
+    width: 100px;
+    height: 100px;
+  }
+
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  .nav-menu {
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .nav-menu li {
+    flex: 1;
+    margin: 0;
+    text-align: center;
+  }
+
+  .nav-link {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-link::before {
+    border-radius: 6px;
+  }
+
+  .nav-link::after {
+    bottom: 6px;
+  }
+
+  .arabic-text {
+    font-size: 1.4rem;
+  }
+
+  .greeting {
+    font-size: 0.9rem;
+  }
+
+  .message-line {
+    font-size: 0.9rem;
+  }
+
+  .deceased-name {
+    font-size: 1.05rem;
+  }
+
+  .parent-names {
+    font-size: 0.9rem;
+  }
+
+  .event-title {
+    font-size: 1rem;
+  }
+
+  .event-detail {
+    font-size: 0.9rem;
+  }
+
+  .invitation-text p {
+    font-size: 0.88rem;
+  }
+
+  .profile-photo {
+    width: 200px;
+    height: 280px;
+    border: 6px solid rgba(107, 141, 184, 0.3);
+  }
+
+  .arabic-bismillah {
+    font-size: 1.5rem;
+  }
+
+  .profile-title {
+    font-size: 1.3rem;
+  }
+
+  .life-date {
+    font-size: 0.9rem;
+  }
+
+  .location-title {
+    font-size: 1.3rem;
+  }
+
+  .map-container {
+    padding: 18px 15px;
+  }
+
+  .map-wrapper {
+    height: 250px;
+  }
+
+  .map-info {
+    padding: 12px;
+  }
+
+  .location-name {
+    font-size: 0.95rem;
+  }
+
+  .location-address {
+    font-size: 0.85rem;
+  }
+
+  .location-link {
+    font-size: 0.9rem;
+    padding: 12px 24px;
+  }
+
+  .closing-message p {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-container {
+    padding: 0 5px;
+  }
+
+  .nav-link {
+    padding: 10px 5px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-link::after {
+    height: 2px;
+    bottom: 5px;
+  }
+
+  .arabic-text {
+    font-size: 1.2rem;
+  }
+
+  .profile-photo {
+    width: 180px;
+    height: 250px;
+  }
+
+  .map-wrapper {
+    height: 220px;
+  }
+
+  .location-link {
+    font-size: 0.85rem;
+    padding: 11px 20px;
+  }
+
+  .location-link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .flower-decoration {
+    width: 70px;
+    height: 70px;
+  }
+
+  .flower-top-left,
+  .flower-top-right {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flower-middle-left,
+  .flower-middle-right {
+    width: 65px;
+    height: 65px;
+  }
+
+  .flower-bottom-left,
+  .flower-bottom-right {
+    width: 90px;
+    height: 90px;
+  }
+
+  .location-flower-left,
+  .location-flower-right,
+  .location-flower-bottom-left,
+  .location-flower-bottom-right {
+    width: 70px;
+    height: 70px;
+  }
+}
